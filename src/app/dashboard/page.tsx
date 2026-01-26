@@ -1,4 +1,3 @@
-import DashboardLayout from "@/components/layout/dashboard-layout"
 import {
     Card,
     CardContent,
@@ -43,7 +42,7 @@ export default async function DashboardPage() {
     }
 
     return (
-        <DashboardLayout>
+        <div>
             <div className="flex items-center">
                 <h1 className="text-lg font-semibold md:text-2xl">Dashboard</h1>
             </div>
@@ -98,6 +97,6 @@ export default async function DashboardPage() {
                     </CardContent>
                 </Card>
             </div>
-        </DashboardLayout>
+        </div>
     )
 }

@@ -12,6 +12,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BarcodeScanner } from "@/components/products/barcode-scanner"
 import { createQuote, getProducts, getClients, createClient } from "@/lib/actions"
 import { toast } from "sonner"
@@ -193,13 +194,14 @@ export function VentasClient() {
     }
 
     return (
-        <div className="grid gap-6 md:grid-cols-[1fr_350px] lg:grid-cols-[1fr_400px]">
-            <div className="flex flex-col gap-6">
-                <Card>
-                    <CardHeader className="pb-4">
-                        <CardTitle>Seleccionar Cliente</CardTitle>
-                    </CardHeader>
-                    <CardContent>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+            <div className="grid gap-6 md:grid-cols-[1fr_350px] lg:grid-cols-[1fr_400px]">
+                <div className="flex flex-col gap-6">
+                    <Card className="border-0 shadow-md bg-white">
+                        <CardHeader className="pb-4">
+                            <CardTitle>Seleccionar Cliente</CardTitle>
+                        </CardHeader>
+                        <CardContent>
                         {showClientForm ? (
                             <div className="space-y-3">
                                 <Input
@@ -256,6 +258,8 @@ export function VentasClient() {
                         )}
                     </CardContent>
                 </Card>
+
+                <Card className="border-0 shadow-md bg-white">
                     <CardHeader className="pb-4">
                         <CardTitle>Buscador de Productos</CardTitle>
                     </CardHeader>
@@ -286,7 +290,7 @@ export function VentasClient() {
                     </CardContent>
                 </Card>
 
-                <Card className="flex-1 flex flex-col">
+                <Card className="flex-1 flex flex-col border-0 shadow-md bg-white">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <ShoppingCart className="h-5 w-5" />
@@ -363,8 +367,8 @@ export function VentasClient() {
             </div>
 
             <div className="flex flex-col gap-6">
-                <Card className="sticky top-6">
-                    <CardHeader className="bg-muted/50 pb-4">
+                <Card className="sticky top-6 border-0 shadow-md bg-white">
+                    <CardHeader className="pb-4">
                         <CardTitle>Resumen de Venta</CardTitle>
                     </CardHeader>
                     <CardContent className="pt-6 grid gap-4">
@@ -379,7 +383,7 @@ export function VentasClient() {
                     <Separator className="my-2" />
                     <CardFooter className="flex flex-col gap-3 pt-4">
                         <Button
-                            className="w-full h-12 text-lg gap-2"
+                            className="w-full h-12 text-lg gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
                             size="lg"
                             onClick={handleCheckout}
                             disabled={cart.length === 0 || processing || !selectedClientId}
@@ -397,10 +401,7 @@ export function VentasClient() {
                     </CardFooter>
                 </Card>
             </div>
+            </div>
         </div>
     )
-}
-
-function Separator({ className }: { className?: string }) {
-    return <div className={`h-[1px] w-full bg-border ${className}`} />
 }
