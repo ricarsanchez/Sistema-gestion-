@@ -42,61 +42,79 @@ export default async function DashboardPage() {
     }
 
     return (
-        <div>
-            <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl">Dashboard</h1>
+        <div className="space-y-8">
+            <div>
+                <h1 className="text-3xl font-bold text-gray-900">Bienvenido al Dashboard</h1>
+                <p className="text-gray-600 mt-2">Gestiona tu ferretería desde un único lugar</p>
             </div>
 
             {error && (
-                <div className="bg-destructive/15 text-destructive p-4 rounded-md mb-4">
+                <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
                     {error}
                 </div>
             )}
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <Card>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
+                        <CardTitle className="text-sm font-medium text-gray-600">
                             Total Clientes
                         </CardTitle>
-                        <Users className="h-4 w-4 text-muted-foreground" />
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                            <Users className="h-5 w-5 text-blue-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{clientsCount}</div>
-                        <p className="text-xs text-muted-foreground">
+                        <div className="text-3xl font-bold text-gray-900">{clientsCount}</div>
+                        <p className="text-xs text-gray-500 mt-1">
                             Total registrados
                         </p>
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
+                        <CardTitle className="text-sm font-medium text-gray-600">
                             Productos Bajo Stock
                         </CardTitle>
-                        <AlertTriangle className="h-4 w-4 text-muted-foreground" />
+                        <div className="p-2 bg-orange-100 rounded-lg">
+                            <AlertTriangle className="h-5 w-5 text-orange-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{lowStockCount}</div>
-                        <p className="text-xs text-muted-foreground">
+                        <div className="text-3xl font-bold text-gray-900">{lowStockCount}</div>
+                        <p className="text-xs text-gray-500 mt-1">
                             Menos de 10 unidades
                         </p>
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
+                        <CardTitle className="text-sm font-medium text-gray-600">
                             Presupuestos del Mes
                         </CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
+                        <div className="p-2 bg-green-100 rounded-lg">
+                            <FileText className="h-5 w-5 text-green-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{quotesCount}</div>
-                        <p className="text-xs text-muted-foreground">
+                        <div className="text-3xl font-bold text-gray-900">{quotesCount}</div>
+                        <p className="text-xs text-gray-500 mt-1">
                             Generados este mes
                         </p>
                     </CardContent>
                 </Card>
             </div>
+
+            <Card className="border-0 shadow-sm bg-blue-50">
+                <CardHeader>
+                    <CardTitle className="text-lg text-gray-900">Accesos Rápidos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-gray-600">
+                        Usa el menú lateral para acceder a: <strong>Nueva venta, Productos, Clientes, Presupuestos y Configuración</strong>. En dispositivos móviles, haz clic en el menú (☰) en la esquina superior izquierda.
+                    </p>
+                </CardContent>
+            </Card>
         </div>
     )
 }

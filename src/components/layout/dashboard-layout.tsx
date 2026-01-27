@@ -4,15 +4,13 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-    LayoutDashboard,
+    Menu,
+    LogOut,
+    Settings,
+    ShoppingCart,
     Package,
     Users,
     FileText,
-    CreditCard,
-    Menu,
-    User,
-    LogOut,
-    Settings,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -28,14 +26,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
+import Sidebar from "./sidebar"
 
-const sidebarItems = [
-    { name: "Inicio", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Ventas", href: "/dashboard/ventas", icon: CreditCard },
+const mobileMenuItems = [
+    { name: "Nueva venta", href: "/dashboard/ventas", icon: ShoppingCart },
     { name: "Productos", href: "/dashboard/productos", icon: Package },
-    { name: "Clientes", href: "/dashboard/clients", icon: Users },
-    { name: "Presupuestos", href: "/dashboard/quotes", icon: FileText },
-    { name: "Cta Corriente", href: "/dashboard/accounts", icon: CreditCard },
+    { name: "Clientes", href: "/dashboard/clientes", icon: Users },
+    { name: "Presupuestos", href: "/dashboard/presupuestos", icon: FileText },
+    { name: "Configuración", href: "/dashboard/configuracion", icon: Settings },
 ]
 
 export default function DashboardLayout({
@@ -47,107 +45,95 @@ export default function DashboardLayout({
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     return (
-        <div className="flex min-h-screen flex-col bg-muted/40">
-            {/* Header */}
-            <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-6 shadow-sm">
-                <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-                    <SheetTrigger asChild>
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="shrink-0 md:hidden"
-                        >
-                            <Menu className="h-5 w-5" />
-                            <span className="sr-only">Toggle navigation menu</span>
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="flex flex-col">
-                        <nav className="grid gap-2 text-lg font-medium">
-                            <Link
-                                href="#"
-                                className="flex items-center gap-2 text-lg font-semibold"
+        <div className="flex min-h-screen bg-gray-50">
+            {/* Desktop Sidebar */}
+            <Sidebar />
+
+            {/* Main content area */}
+            <div className="flex w-full flex-col md:ml-64 lg:ml-64">
+                {/* Header */}
+                <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-6 shadow-sm">
+                    <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+                        <SheetTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="shrink-0 md:hidden text-blue-600 hover:bg-blue-50"
                             >
-                                <Package className="h-6 w-6" />
-                                <span className="sr-only">Acme Inc</span>
-                            </Link>
-                            {sidebarItems.map((item) => (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    onClick={() => setIsSidebarOpen(false)}
-                                    className={cn(
-                                        "mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground",
-                                        (pathname === item.href || pathname.startsWith(item.href + "/")) && "bg-muted text-foreground"
-                                    )}
-                                >
-                                    <item.icon className="h-5 w-5" />
-                                    {item.name}
-                                </Link>
-                            ))}
-                        </nav>
-                    </SheetContent>
-                </Sheet>
-                <div className="flex w-full items-center justify-between gap-4 md:gap-4 lg:gap-4">
-                    <div className="flex items-center gap-2 font-semibold md:text-lg">
-                        <span className="hidden md:inline-block">Ferretería Demo</span>
-                    </div>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="secondary" size="icon" className="rounded-full">
-                                <Avatar className="h-8 w-8">
-                                    <AvatarImage src="" alt="User" />
-                                    <AvatarFallback>U</AvatarFallback>
-                                </Avatar>
-                                <span className="sr-only">Toggle user menu</span>
+                                <Menu className="h-5 w-5" />
+                                <span className="sr-only">Abrir menú</span>
                             </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>
-                                <Settings className="mr-2 h-4 w-4" /> Settings
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>
-                                <LogOut className="mr-2 h-4 w-4" /> Logout
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            </header>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="flex flex-col bg-white p-0">
+                            <div className="flex h-16 items-center border-b border-gray-200 px-4">
+                                <Link href="/dashboard" className="flex items-center gap-2 font-bold">
+                                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+                                        <span className="text-white font-bold">F</span>
+                                    </div>
+                                    <span>Ferretería</span>
+                                </Link>
+                            </div>
+                            <nav className="flex flex-1 flex-col gap-2 px-3 py-4">
+                                {mobileMenuItems.map((item) => {
+                                    const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
+                                    const Icon = item.icon
 
-            <div className="flex flex-1">
-                {/* Desktop Sidebar */}
-                <aside className="hidden border-r bg-background md:block md:w-[220px] lg:w-[280px]">
-                    <div className="flex h-full max-h-screen flex-col gap-2">
-                        <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-                            <Link href="/" className="flex items-center gap-2 font-semibold">
-                                <Package className="h-6 w-6" />
-                                <span className="">Ferretería Inc</span>
-                            </Link>
-                        </div>
-                        <div className="flex-1">
-                            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-                                {sidebarItems.map((item) => (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={cn(
-                                            "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
-                                            (pathname === item.href || pathname.startsWith(item.href + "/")) && "bg-muted text-primary"
-                                        )}
-                                    >
-                                        <item.icon className="h-4 w-4" />
-                                        {item.name}
-                                    </Link>
-                                ))}
+                                    return (
+                                        <Link
+                                            key={item.href}
+                                            href={item.href}
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={cn(
+                                                "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                                                isActive
+                                                    ? "bg-blue-50 text-blue-600"
+                                                    : "text-gray-600 hover:bg-gray-50"
+                                            )}
+                                        >
+                                            <Icon className={cn(
+                                                "h-5 w-5",
+                                                isActive ? "text-blue-600" : "text-gray-400"
+                                            )} />
+                                            <span>{item.name}</span>
+                                        </Link>
+                                    )
+                                })}
                             </nav>
-                        </div>
-                    </div>
-                </aside>
+                        </SheetContent>
+                    </Sheet>
 
-                <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-                    {children}
+                    <div className="flex w-full items-center justify-between gap-4">
+                        <h1 className="text-lg font-semibold text-gray-900">Ferretería Demo</h1>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="icon" className="rounded-full hover:bg-gray-100">
+                                    <Avatar className="h-8 w-8">
+                                        <AvatarImage src="" alt="Usuario" />
+                                        <AvatarFallback className="bg-blue-600 text-white">U</AvatarFallback>
+                                    </Avatar>
+                                    <span className="sr-only">Menú de usuario</span>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                                <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Settings className="mr-2 h-4 w-4 text-blue-600" /> Configuración
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="text-red-600">
+                                    <LogOut className="mr-2 h-4 w-4" /> Cerrar sesión
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </header>
+
+                {/* Main content */}
+                <main className="flex-1 overflow-auto">
+                    <div className="p-4 lg:p-6">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>
