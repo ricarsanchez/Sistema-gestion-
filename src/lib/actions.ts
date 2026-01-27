@@ -102,21 +102,39 @@ export async function createQuote(items: { productId: string, quantity: number, 
 
     const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
-    const quote = await prisma.quote.create({
-        data: {
-            companyId: company.id,
-            clientId,
-            total,
-            status: "ACEPTADO", // Mark as accepted sale
-            items: {
-                create: items.map(item => ({
-                    productId: item.productId,
-                    quantity: item.quantity,
-                    price: item.price
-                }))
+    // Use a transaction to ensure all operations succeed or fail together
+    const result = await prisma.$transaction(async (tx) => {
+        // 1. Create the quote
+        const quote = await tx.quote.create({
+            data: {
+                companyId: company.id,
+                clientId,
+                total,
+                status: "ACEPTADO", // Mark as accepted sale
+                items: {
+                    create: items.map(item => ({
+                        productId: item.productId,
+                        quantity: item.quantity,
+                        price: item.price
+                    }))
+                }
             }
+        })
+
+        // 2. Update stock for each product
+        for (const item of items) {
+            await tx.product.update({
+                where: { id: item.productId },
+                data: {
+                    stock: {
+                        decrement: item.quantity
+                    }
+                }
+            })
         }
+
+        return quote
     })
 
-    return quote
+    return result
 }
