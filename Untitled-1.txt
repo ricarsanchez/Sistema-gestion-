@@ -1,0 +1,13 @@
+// Validación combinada (la más importante)
+canAccess(user, sidebarItem)           // ⭐ Valida rol + permiso
+
+// Filtrar menú automáticamente
+filterMenuByPermissions(items, user)   // ⭐ El sidebar se filtra solo
+
+// Validaciones individuales
+canAccessByRole(user, ['admin'])
+canAccessByPermission(user, ['productos.crear'])
+hasRole(user, 'admin')
+isAdmin(user)
+hasAnyPermission(user, [...])
+hasAllPermissions(user, [...])
