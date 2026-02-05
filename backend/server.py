@@ -11,7 +11,12 @@ from datetime import datetime
 # Import local modules
 from models import (
     User, UserCreate, UserUpdate, UserResponse, UserInDB, UserRole,
-    LoginRequest, TokenResponse
+    LoginRequest, TokenResponse,
+    Category, CategoryCreate, CategoryUpdate,
+    Product, ProductCreate, ProductUpdate,
+    Customer, CustomerCreate, CustomerUpdate,
+    Sale, SaleCreate,
+    Quote, QuoteCreate, QuoteUpdate
 )
 from auth import hash_password, verify_password, create_access_token, decode_access_token
 from permissions import Permission, get_permissions_list, require_permission
@@ -20,6 +25,7 @@ from database import (
     db, users_collection, serialize_doc, serialize_docs,
     create_indexes, log_audit
 )
+import routes
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
