@@ -80,6 +80,7 @@ const Clientes = () => {
       setEditingCustomer(customer);
       setFormData({
         nombre: customer.nombre,
+        dni: customer.dni || '',
         email: customer.email || '',
         telefono: customer.telefono || '',
         direccion: customer.direccion || '',
@@ -89,6 +90,7 @@ const Clientes = () => {
       setEditingCustomer(null);
       setFormData({
         nombre: '',
+        dni: '',
         email: '',
         telefono: '',
         direccion: '',
