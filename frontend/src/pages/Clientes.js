@@ -115,7 +115,7 @@ const Clientes = () => {
       setDialogOpen(false);
       loadCustomers();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Error al guardar cliente');
+      toast.error(getErrorMessage(error));
     }
   };
 
@@ -126,7 +126,7 @@ const Clientes = () => {
       setDeleteDialogOpen(false);
       loadCustomers();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Error al eliminar cliente');
+      toast.error(getErrorMessage(error));
     }
   };
 
