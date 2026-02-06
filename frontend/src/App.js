@@ -56,6 +56,24 @@ function App() {
             }
           />
           
+          <Route
+            path="/dashboard/ventas"
+            element={
+              <DashboardLayout>
+                <Ventas />
+              </DashboardLayout>
+            }
+          />
+          
+          <Route
+            path="/dashboard/presupuestos"
+            element={
+              <DashboardLayout>
+                <Presupuestos />
+              </DashboardLayout>
+            }
+          />
+          
           {/* Placeholder routes for remaining modules */}
           <Route
             path="/dashboard/*"
