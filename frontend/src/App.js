@@ -5,6 +5,9 @@ import { Toaster } from './components/ui/sonner';
 import DashboardLayout from './components/Layout/DashboardLayout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Categorias from './pages/Categorias';
+import Productos from './pages/Productos';
+import Clientes from './pages/Clientes';
 import '@/App.css';
 
 function App() {
@@ -24,7 +27,34 @@ function App() {
             }
           />
           
-          {/* Placeholder routes for other modules - will be implemented in Phase 4 */}
+          <Route
+            path="/dashboard/categorias"
+            element={
+              <DashboardLayout>
+                <Categorias />
+              </DashboardLayout>
+            }
+          />
+          
+          <Route
+            path="/dashboard/productos"
+            element={
+              <DashboardLayout>
+                <Productos />
+              </DashboardLayout>
+            }
+          />
+          
+          <Route
+            path="/dashboard/clientes"
+            element={
+              <DashboardLayout>
+                <Clientes />
+              </DashboardLayout>
+            }
+          />
+          
+          {/* Placeholder routes for remaining modules */}
           <Route
             path="/dashboard/*"
             element={
