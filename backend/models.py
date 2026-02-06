@@ -122,6 +122,7 @@ class Product(ProductBase):
 # Customer Models
 class CustomerBase(BaseModel):
     nombre: str
+    dni: Optional[str] = None
     email: Optional[EmailStr] = None
     telefono: Optional[str] = None
     direccion: Optional[str] = None
@@ -132,6 +133,7 @@ class CustomerCreate(CustomerBase):
 
 class CustomerUpdate(BaseModel):
     nombre: Optional[str] = None
+    dni: Optional[str] = None
     email: Optional[EmailStr] = None
     telefono: Optional[str] = None
     direccion: Optional[str] = None
