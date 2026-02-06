@@ -144,7 +144,7 @@ const Productos = () => {
       setDialogOpen(false);
       loadProducts();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Error al guardar producto');
+      toast.error(getErrorMessage(error));
     }
   };
 
@@ -155,7 +155,7 @@ const Productos = () => {
       setDeleteDialogOpen(false);
       loadProducts();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Error al eliminar producto');
+      toast.error(getErrorMessage(error));
     }
   };
 
@@ -170,7 +170,7 @@ const Productos = () => {
       );
       loadProducts();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Error al importar productos');
+      toast.error(getErrorMessage(error));
     }
     e.target.value = '';
   };
