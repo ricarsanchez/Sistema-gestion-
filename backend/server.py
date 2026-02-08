@@ -16,7 +16,11 @@ from models import (
     Product, ProductCreate, ProductUpdate,
     Customer, CustomerCreate, CustomerUpdate,
     Sale, SaleCreate,
-    Quote, QuoteCreate, QuoteUpdate
+    Quote, QuoteCreate, QuoteUpdate,
+    Warehouse, WarehouseCreate, WarehouseUpdate,
+    Supplier, SupplierCreate, SupplierUpdate,
+    Purchase, PurchaseCreate,
+    SupplierPriceCreate
 )
 from auth import hash_password, verify_password, create_access_token, decode_access_token
 from permissions import Permission, get_permissions_list, require_permission
