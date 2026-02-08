@@ -484,6 +484,13 @@ async def export_products_route(current_user: dict = Depends(get_current_user)):
     """Export products to Excel"""
     return await routes.export_products_excel(current_user)
 
+# ===== DASHBOARD STATS ROUTES =====
+
+@api_router.get("/dashboard/stats")
+async def get_dashboard_statistics(current_user: dict = Depends(get_current_user)):
+    """Get comprehensive dashboard statistics"""
+    return await stats.get_dashboard_stats(current_user)
+
 # ===== HEALTH CHECK =====
 
 @api_router.get("/")
