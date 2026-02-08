@@ -236,12 +236,18 @@ const Usuarios = () => {
           </h1>
           <p className="text-slate-600 mt-1">Gestión de usuarios y permisos</p>
         </div>
-        {canCreate && (
-          <Button onClick={() => handleOpenDialog()} data-testid="create-user-button">
-            <Plus className="mr-2 h-4 w-4" />
-            Nuevo Usuario
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={handleBackup} data-testid="backup-button">
+            <Download className="mr-2 h-4 w-4" />
+            Descargar Backup
           </Button>
-        )}
+          {canCreate && (
+            <Button onClick={() => handleOpenDialog()} data-testid="create-user-button">
+              <Plus className="mr-2 h-4 w-4" />
+              Nuevo Usuario
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Stats Cards */}
