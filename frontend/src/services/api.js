@@ -108,4 +108,9 @@ export const quotesAPI = {
   convertToSale: (id) => api.post(`/quotes/${id}/convertir`),
 };
 
+// Dashboard Stats API
+export const dashboardAPI = {
+  getStats: () => api.get('/dashboard/stats'),
+};
+
 export default api;
