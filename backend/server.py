@@ -26,6 +26,7 @@ from database import (
     create_indexes, log_audit
 )
 import routes
+import stats
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
