@@ -153,6 +153,35 @@ const Usuarios = () => {
     }
   };
 
+  const handleBackup = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/system/backup`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error al crear backup');
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `backup_ferreteria_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      
+      toast.success('Backup descargado exitosamente');
+    } catch (error) {
+      toast.error('Error al crear backup');
+    }
+  };
+
   const getInitials = (name) => {
     return name
       .split(' ')
