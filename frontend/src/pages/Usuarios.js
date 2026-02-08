@@ -41,7 +41,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Avatar, AvatarFallback } from '../components/ui/avatar';
-import { Plus, Pencil, Trash2, Search, UserCheck, UserX } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, UserCheck, UserX, Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Usuarios = () => {
