@@ -10,6 +10,7 @@ import Productos from './pages/Productos';
 import Clientes from './pages/Clientes';
 import Ventas from './pages/Ventas';
 import Presupuestos from './pages/Presupuestos';
+import Usuarios from './pages/Usuarios';
 import '@/App.css';
 
 function App() {
