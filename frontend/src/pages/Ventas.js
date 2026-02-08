@@ -215,6 +215,22 @@ const Ventas = () => {
     downloadPDF(doc, `factura_${sale.id.substring(0, 8)}.pdf`);
   };
 
+  const handleBarcodeScanned = async (barcode) => {
+    try {
+      // Search product by barcode
+      const product = products.find(p => p.codigo_barras === barcode);
+      
+      if (product) {
+        addToCart(product);
+        toast.success(`Producto agregado: ${product.nombre}`);
+      } else {
+        toast.error('Producto no encontrado con ese código');
+      }
+    } catch (error) {
+      toast.error('Error al buscar producto');
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
