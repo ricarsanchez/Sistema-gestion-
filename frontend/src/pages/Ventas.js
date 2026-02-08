@@ -30,8 +30,9 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Badge } from '../components/ui/badge';
-import { Plus, ShoppingCart, Trash2, Search, X } from 'lucide-react';
+import { Plus, ShoppingCart, Trash2, Search, X, Printer, FileText } from 'lucide-react';
 import { toast } from 'sonner';
+import { generateSaleTicket, generateSaleInvoice, downloadPDF, printPDF } from '../utils/pdfGenerator';
 
 const Ventas = () => {
   const { hasPermission } = useAuth();
