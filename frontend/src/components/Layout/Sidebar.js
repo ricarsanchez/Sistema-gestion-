@@ -65,19 +65,15 @@ const menuItems = [
 const Sidebar = ({ collapsed, setCollapsed }) => {
   const location = useLocation();
   const { hasPermission } = useAuth();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const filteredMenuItems = menuItems.filter((item) => {
     if (!item.permission) return true;
     return hasPermission(item.permission);
   });
 
-  return (
-    <div
-      className={cn(
-        'bg-slate-900 text-white h-screen transition-all duration-300 flex flex-col',
-        collapsed ? 'w-16' : 'w-64'
-      )}
-    >
+  const SidebarContent = () => (
+    <>
       {/* Header */}
       <div className="p-4 flex items-center justify-between border-b border-slate-800">
         {!collapsed && (
@@ -88,10 +84,21 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => setCollapsed(!collapsed)}
-          className="text-slate-400 hover:text-white hover:bg-slate-800"
+          onClick={() => {
+            setCollapsed(!collapsed);
+            setMobileOpen(false);
+          }}
+          className="text-slate-400 hover:text-white hover:bg-slate-800 hidden md:flex"
         >
           {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setMobileOpen(false)}
+          className="text-slate-400 hover:text-white hover:bg-slate-800 md:hidden"
+        >
+          <X size={20} />
         </Button>
       </div>
 
@@ -102,7 +109,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           const isActive = location.pathname === item.path;
 
           return (
-            <Link key={item.path} to={item.path}>
+            <Link key={item.path} to={item.path} onClick={() => setMobileOpen(false)}>
               <div
                 className={cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
@@ -120,7 +127,43 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           );
         })}
       </nav>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <div className="md:hidden fixed top-4 left-4 z-50">
+        <Button
+          variant="default"
+          size="icon"
+          onClick={() => setMobileOpen(true)}
+          className="bg-slate-900 hover:bg-slate-800"
+        >
+          <Menu size={20} />
+        </Button>
+      </div>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Sidebar - Desktop & Mobile */}
+      <div
+        className={cn(
+          'bg-slate-900 text-white h-screen transition-all duration-300 flex flex-col',
+          'fixed md:relative z-40',
+          collapsed ? 'w-16' : 'w-64',
+          mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        )}
+      >
+        <SidebarContent />
+      </div>
+    </>
   );
 };
 
