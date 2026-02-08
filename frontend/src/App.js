@@ -75,6 +75,15 @@ function App() {
             }
           />
           
+          <Route
+            path="/dashboard/configuracion"
+            element={
+              <DashboardLayout>
+                <Usuarios />
+              </DashboardLayout>
+            }
+          />
+          
           {/* Placeholder routes for remaining modules */}
           <Route
             path="/dashboard/*"
