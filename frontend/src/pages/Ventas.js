@@ -440,6 +440,22 @@ const Ventas = () => {
                           >
                             Ver
                           </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handlePrintTicket(sale)}
+                            title="Imprimir Ticket"
+                          >
+                            <Printer className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDownloadInvoice(sale)}
+                            title="Descargar Factura"
+                          >
+                            <FileText className="h-4 w-4" />
+                          </Button>
                           {canAnular && sale.estado === 'completada' && (
                             <Button
                               variant="ghost"
