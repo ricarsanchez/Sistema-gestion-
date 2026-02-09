@@ -123,8 +123,8 @@ const Compras = () => {
             producto_id: product.id,
             producto_nombre: product.nombre,
             cantidad: 1,
-            precio_unitario: product.precio_costo || product.precio,
-            subtotal: product.precio_costo || product.precio,
+            precio_unitario: product.precio_costo || product.precio_mayorista || product.precio_minorista || 0,
+            subtotal: product.precio_costo || product.precio_mayorista || product.precio_minorista || 0,
           },
         ],
       });
