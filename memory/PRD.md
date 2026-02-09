@@ -19,6 +19,7 @@ Sistema SaaS de gestión integral para ferreterías con funcionalidades de punto
 - CRUD completo de productos
 - Búsqueda autocompletada
 - Código de barras
+- Generación de códigos QR para productos sin código de barras
 - Importación/exportación Excel
 
 ### 3. Clientes
@@ -28,6 +29,7 @@ Sistema SaaS de gestión integral para ferreterías con funcionalidades de punto
 ### 4. Punto de Venta (POS)
 - Registro de ventas
 - Escáner de código de barras (cámara móvil)
+- Lectura de códigos QR generados por el sistema
 - Generación de tickets PDF
 
 ### 5. Presupuestos
@@ -84,6 +86,9 @@ Sistema SaaS de gestión integral para ferreterías con funcionalidades de punto
 - [x] Actualizar rutas en App.js
 - [x] Agregar enlaces en Sidebar
 - [x] Fix: precio NaN en formulario de compras
+- [x] Comparativa de precios entre proveedores
+- [x] Generación de códigos QR para productos
+- [x] Integración QR en escáner del POS
 - [x] Testing completo con 100% de éxito
 
 ---
