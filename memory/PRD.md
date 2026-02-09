@@ -91,9 +91,9 @@ Sistema SaaS de gestión integral para ferreterías con funcionalidades de punto
 ## Backlog Priorizado
 
 ### P1 - Alta Prioridad
+- [x] Comparativa de precios entre proveedores en UI (Dic 2024)
 - [ ] Integrar multi-depósito en módulo Productos (mostrar stock por depósito)
 - [ ] Integrar multi-depósito en módulo Ventas (descontar del depósito correcto)
-- [ ] Comparativa de precios entre proveedores en UI
 
 ### P2 - Media Prioridad
 - [ ] Transferencias de stock entre depósitos
