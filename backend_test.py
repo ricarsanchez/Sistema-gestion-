@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 
 class FerreteriaAPITester:
-    def __init__(self, base_url="https://team-sync-11.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://inventory-hub-745.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.tokens = {}  # Store tokens for different users
         self.users = {
